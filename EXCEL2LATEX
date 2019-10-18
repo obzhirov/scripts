@@ -1,0 +1,19 @@
+input = open("data", "r")
+output = open("table", "w") 
+
+lines = input.readlines()
+column_number = len(lines[0].split())
+
+output.write("\\begin{table} \n \centering \n")
+beginning = "\\begin{tabular}{|" + column_number*"c|" + "}" + "\n"
+output.write(beginning)
+output.write("\hline \n")
+
+for line in lines[1:]:
+  string = line.replace("\t", " & ")
+  string = string[:-1] + " \\\\ \n"
+  output.write(string)
+  output.write("\hline \n")
+output.write("\end{tabular} \n")
+output.write("\end{table}")
+print("Don't forget to add a caption!")
